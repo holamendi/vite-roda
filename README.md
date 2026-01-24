@@ -24,32 +24,27 @@ require "roda"
 require "vite_roda"
 
 class App < Roda
-  plugin :render
   plugin :vite
 
   route do |r|
     r.public  # Serve static files (including built vite assets)
 
     r.root do
-      view "home"
+      <<~HTML
+        <!DOCTYPE html>
+        <html>
+        <head>
+          #{vite_client_tag}
+          #{vite_javascript_tag "entrypoints/application.js"}
+        </head>
+        <body>
+          <h1>Hello, Vite!</h1>
+        </body>
+        </html>
+      HTML
     end
   end
 end
-```
-
-In your layout:
-
-```erb
-<!DOCTYPE html>
-<html>
-<head>
-  <%= vite_client_tag %>
-  <%= vite_javascript_tag "entrypoints/application.js" %>
-</head>
-<body>
-  <%= yield %>
-</body>
-</html>
 ```
 
 ## View Helpers
@@ -58,14 +53,6 @@ In your layout:
 - `vite_javascript_tag(*names)` - Script tags with automatic CSS imports
 - `vite_stylesheet_tag(*names)` - Stylesheet link tags
 - `vite_asset_path(name)` - Raw asset path
-
-## Plugin Options
-
-```ruby
-plugin :vite,
-  skip_proxy: false,  # Disable dev server proxy
-  strict: false       # Raise on missing entrypoints (default: warn)
-```
 
 ## Configuration
 

@@ -1,0 +1,12 @@
+{
+  "entrypoints/application.js": {
+    "file": "assets/application-abc123.js",
+    "src": "entrypoints/application.js",
+    "isEntry": true,
+    "css": ["assets/application-def456.css"]
+  },
+  "entrypoints/application.css": {
+    "file": "assets/application-def456.css",
+    "src": "entrypoints/application.css"
+  }
+}

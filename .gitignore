@@ -1,0 +1,7 @@
+.worktrees/
+node_modules/
+public/vite*/
+.bundle/
+tmp/
+*.db
+CLAUDE.md

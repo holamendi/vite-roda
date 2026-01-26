@@ -14,7 +14,11 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0"
 
-  spec.files = Dir["lib/**/*", "LICENSE.txt", "README.md"]
+  spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["source_code_uri"] = "https://github.com/holamendi/vite_roda"
+  spec.metadata["changelog_uri"] = "https://github.com/holamendi/vite_roda/blob/main/CHANGELOG.md"
+
+  spec.files = Dir["lib/**/*", "LICENSE.txt", "README.md", "CHANGELOG.md"]
   spec.require_paths = ["lib"]
 
   spec.add_dependency "roda", ">= 3.0"

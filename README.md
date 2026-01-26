@@ -19,32 +19,40 @@ bundle exec vite install
 
 ## Usage
 
+`app.rb`
+
 ```ruby
 require "roda"
 require "vite_roda"
 
 class App < Roda
+  plugin :render
   plugin :vite
 
   route do |r|
-    r.public  # Serve static files (including built vite assets)
+    # serve static files (including built vite assets)
+    r.public
 
     r.root do
-      <<~HTML
-        <!DOCTYPE html>
-        <html>
-        <head>
-          #{vite_client_tag}
-          #{vite_javascript_tag "entrypoints/application.js"}
-        </head>
-        <body>
-          <h1>Hello, Vite!</h1>
-        </body>
-        </html>
-      HTML
+      view :index
     end
   end
 end
+```
+
+`views/index.erb`
+
+```erb
+<!DOCTYPE html>
+<html>
+<head>
+  <%= vite_client_tag %>
+  <%= vite_javascript_tag "entrypoints/application.js" %>
+</head>
+<body>
+  <h1>Hello, Vite!</h1>
+</body>
+</html>
 ```
 
 ## View Helpers
@@ -62,11 +70,7 @@ Configuration is handled by vite_ruby via `config/vite.json`. See the [vite_ruby
 
 ```bash
 bundle install
-bundle exec rake              # Run linter and tests
-bundle exec rake test         # Run tests only
-bundle exec rake standard:fix # Auto-fix linter issues
+bundle exec rake # run linter and tests
+bundle exec rake test # run tests only
+bundle exec rake standard:fix # auto-fix linter issues
 ```
-
-## License
-
-MIT License. See LICENSE.txt.

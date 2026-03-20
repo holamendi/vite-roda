@@ -1,5 +1,6 @@
 .worktrees/
 .bundle/
 tmp/
+*.gem
 CLAUDE.md
 AGENTS.md
